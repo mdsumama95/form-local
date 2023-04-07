@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <form onsubmit="saveTolocalstorage(event)">
+            <h1>Add user</h1>
+           
+                <label >Name</label>
+                <input type="text" name="username" required>
+           
+                <label >Email</label>
+                <input type="email"  name="emailid" required>
+    
+                <label >Number</label>
+                <input type="tel"  name="phoneNumber">
+              <button>Submit</button>
+        </form>
+       
+     <ul id='listOfItems'></ul>
+
+    <script>
+        function saveTolocalstorage(event){
+            event.preventDefault();
+            const name = event.target.username.value;
+            const email = event.target.emailid.value;
+            const phoneNumber = event.target.phoneNumber.value;
+        
+        }
+        const obj = {
+            name,
+            email,
+            phoneNumber
+        };    
+        
+        localStorage.setItem(obj.email, JSON.stringify(obj));
+        showUserOnScreen(obj);
+        function showUserOnScreen(obj){
+           const parentElem = document.getElementById('listOfItems');
+           parentElem.innerHTML = parentElem.innerHTML+`<li>${obj.name} - ${obj.email} - ${obj.phoneNumber}</li>`
+        }
+    </script>
+
+    
+</body>
+</html>
